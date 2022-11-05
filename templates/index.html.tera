@@ -1,0 +1,16 @@
+<title>Depósito de arquivos</title>
+<h1>Olá {{ username }}</h1>
+
+
+<form action="/{{ approot }}/upload"  enctype="multipart/form-data" method="post">
+  <input type="file" id="fileUpload" name="contents">
+  <input type="hidden" name="csrf" value="{{csrf}}">
+  <input type="submit" value="upload">
+</form>
+
+<ul>
+{% for file in files %}
+<li><a href="/{{ approot }}/download?filename={{file.1}}">{{file.0}}</href></li>
+{% endfor %}
+</ul>
+
