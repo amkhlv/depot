@@ -28,19 +28,40 @@ To add new `user:password` :
 
     htpasswd  htpasswd_depot  newusername
 
+## Use
+
+### Profile directory
+
+The profile directory `/some/profile` should contain:
+
+    config.toml
+    templates/index.html.tera
+    files/
+
+See `example-profile`. The `secret_key` in `/some/profile/config.toml` should be hex string, which can be obtained as follows:
+
+    openssl rand -hex 32
+
+The uploaded files will be stored in `files/`
+
 ### Invocation
 
-    depot -a depot -p 11111 -w ~/depot
+    ROCKET_CONFIG=/some/profile/config.toml depot
+
+The profile directory is where the config `.toml` file is located (_i.e._ the `dirname` of `ROCKET_CONFIG`).
+Notice that that `.toml` file can have any name, except it __must__ have `.toml` extension.
 
 ## Approot
 
-In this example, the approot is `depot`. It should be configured in 3 places:
+In our example, the approot is `depot`. It should be configured in 3 places:
 
-1. Command line invocation, switch `-a depot`
+1. In `ROCKET_CONFIG` `.toml` file
 
 2. In NGINX config, `location /depot`
 
 3. In NGINX config, `proxy_pass http://127.0.0.1:11111/depot;`
+
+(The same word "depot" in three places.)
 
 ## Workdir
 

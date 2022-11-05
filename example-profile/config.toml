@@ -1,0 +1,6 @@
+[default]
+address = "127.0.0.1"
+port = 11111
+limits = { file = "100 MiB" }
+approot = "depot"
+secret_key = "145f59944172f0af8d9af4f5bcd5aed9d883afa107a467bceb34f71ea6fe8496"
